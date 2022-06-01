@@ -1,4 +1,4 @@
-# [B - Knight in a War Grid]((https://vjudge.net/problem/UVA-11906))
+# [B - Knight in a War Grid](https://vjudge.net/problem/UVA-11906)
 
 Let's say we are in cell[ i ][ j ]. The possible moves from this position are:
 
