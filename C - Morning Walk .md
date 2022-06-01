@@ -12,6 +12,71 @@ After we have considered these, we have to check if all of these nodes are conne
 <summary>C++ Code</summary>
 
 ```cpp
+#include <bits/stdc++.h>
 
+using namespace std;
+
+set<int> adj[202];
+bool visited[202];
+
+void dfs(int curr)
+{
+    visited[curr] = true;
+
+    for(auto child : adj[curr])
+    {
+        if(visited[child])
+            continue;
+        dfs(child);
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+
+    int n, r;
+    while((cin >> n >> r))
+    {
+        set<int> to_visit;
+        map<int, int> m;
+        memset(visited, 0, sizeof(visited));
+        for(int i = 0; i < r; i++)
+        {
+            int u, v;
+            cin >> u >> v;
+            m[u]++, m[v]++;
+            to_visit.insert(u);
+            to_visit.insert(v);
+            adj[u].insert(v);
+            adj[v].insert(u);
+        }
+
+        bool f = 1;
+        if(to_visit.size() == 0)
+            f = 0;
+
+        for(auto it : m)
+            if (it.second % 2)
+                f = 0;
+
+        if(to_visit.size())
+            dfs(*(to_visit.begin()));
+
+        for(auto it : to_visit)
+            if(visited[it] == 0)
+                f = 0;
+
+        for(int i = 0; i < n; i++)
+            adj[i].clear();
+
+        if(f)
+            cout << "Possible\n";
+        else
+            cout << "Not Possible\n";
+    }
+    return 0;
+}
 ```
 </details>
