@@ -31,8 +31,7 @@ if(g[i][j]  == 'O') //west
 
 
 
-Using only four angles to represent the direction to move towards, simplifies things i.e.less angle ranges to look out for :) . Hence, every we subtract or add 90 we do the following operation:
-
+Using only four angles to represent the direction simplifies things i.e.less angle ranges to look out for :) . Hence, every time we subtract or add 90 we do the following operation:
 
 ```cpp
 deg %= 360;
