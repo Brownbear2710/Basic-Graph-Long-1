@@ -15,7 +15,7 @@ int find_parent(int node)
 }
 ```
 </details>
-Whenever two friends know each other, we can join them by the above process. After we have joined all of them, we have to see if two friends, who hate each other, belong to same set or not. To check this, we simply find the root of node of both of them. If they have same root node, they belong to the same set. If they belong to the same set, we cannot invite that set of friends even if they are the largest group. So, we exclude that set from consideration. After excluding the unwanted sets. We iterate through the size of the remaining sets and find the largest size. This is the answer.
+Whenever two friends know each other, we can join them by the above process. After we have joined all of them, we have to see if two friends, who hate each other, belong to same set or not. To check this, we simply find the root node of both of them. If they have same root node, they belong to the same set. If they belong to the same set, we cannot invite that set of friends even if they are the largest group. So, we exclude that set from consideration. After excluding the unwanted sets. We iterate through the size of the remaining sets and find the largest size. This is the answer.
 <br><br>
 <details>
 <summary>C++ Code</summary>
