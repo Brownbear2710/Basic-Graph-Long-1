@@ -3,7 +3,7 @@ First of all, we have to make sets of friends who know each other directly or in
 At first we take an array P, where P[<i>i</i>] donotes the parent of element <i>i</i>. To join two elements <i>u</i> and <i>v</i>, we at first find the parent of <i>u</i> and <i>v</i>, P[<i>u</i>] and P[<i>v</i>] respectively. Now we take another array which stores the size of set that the parent is a part of. Let's say P[<i>u</i>] is a part of greater set. So, we set the parent of P[<i>v</i>] to P[<i>u</i>] i.e P[P[<i>v</i>]] = P[<i>u</i>] and update the size of P[<i>u</i>].<br>
 <details>
 <summary><u>How to find parent or the root</u></summary>
-<p>Initially, we set the parent of every elemnt to themselves, namely, P[i] = i. So, whenever we find such a node for which P[<i>node</i>] holds the value <i>node</i>, we can be sure that it is the root node. Otherwise we find the parent of P[<i>node</i>] and so on.</p>
+<p>Initially, we set the parent of every elemnt to themselves, namely, P[i] = i. So, whenever we find such a node for which P[<i>node</i>] holds the value <i>node</i>, we can be sure that it is the root node. Otherwise, we find the parent of P[<i>node</i>] and so on.</p>
 
 ```cpp
 int find_parent(int node)
