@@ -2,8 +2,8 @@
 First of all, we have to make sets of friends who know each other directly or indirectly. To do this we can use the concept of Disjoint Set Union.<br>
 At first we take an array P, where P[<i>i</i>] donotes the parent of element <i>i</i>. To join two elements <i>u</i> and <i>v</i>, we at first find the parent of <i>u</i> and <i>v</i>, P[<i>u</i>] and P[<i>v</i>] respectively. Now we take another array which stores the size of set that the parent is a part of. Let's say P[<i>u</i>] is a part of greater set. So, we set the parent of P[<i>v</i>] to P[<i>u</i>] i.e P[P[<i>v</i>]] = P[<i>u</i>] and update the size of P[<i>u</i>].<br>
 <details>
-<summary>How to find parent or the root</summary>
-<p>Initially, we set the parent of every elemnt to themselves, namely, P[i] = i. So, whenever we find such a node for which P[<i>node</i>] holds the value <i>node</i>, we can be sure that it is the root node. Otherwise, we find the parent of P[<i>node</i>] and so on.</p>
+<summary><u>How to find parent or the root</u></summary>
+<p>Initially, we set the parent of every elemnt to themselves, namely, P[i] = i. So, whenever we find such a node for which P[<i>node</i>] holds the value <i>node</i>, we can be sure that it is the root node. Otherwise we find the parent of P[<i>node</i>] and so on.</p>
 
 ```cpp
 int find_parent(int node)
@@ -15,7 +15,8 @@ int find_parent(int node)
 }
 ```
 </details>
-Whenever two friends know each other, we can join them by the above process. After we have joined all of them, we have to see if two friends, who hate each other, belong to same set or not. If they belong to the same set, we cannot invite that set of friends even if they are the largest group. So, we exclude that set from consideration. After excluding the unwanted sets. We iterate through the size of the remaining sets and find the largest size. This is the answer.
+<br>
+Whenever two friends know each other, we can join them by the above process. After we have joined all of them, we have to see if two friends, who hate each other, belong to same set or not. To check this, we simply find the root of node of both of them. If they have same root node, they belong to the asme set. If they belong to the same set, we cannot invite that set of friends even if they are the largest group. So, we exclude that set from consideration. After excluding the unwanted sets. We iterate through the size of the remaining sets and find the largest size. This is the answer.
 <br><br>
 <details>
 <summary>C++ Code</summary>
