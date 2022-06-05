@@ -1,49 +1,58 @@
 # [E - Sticker Collector Robot](https://vjudge.net/problem/UVA-11831)
-If you look at how the directions change, the robot ends up facing North(0 deg), South(180 deg), East(90 deg) or West(270 deg) because we add 90 deg to the current direction when the instruction is 'D' and subtract 90 deg when the instruction os 'E'. We use this idea of four distinct degrees to set the starting direction:
+If you look at how the directions change, the robot ends up facing North(0 deg), South(180 deg), East(90 deg) or West(270 deg) because we add 90 deg to the current direction when the instruction is 'D' and subtract 90 deg when the instruction os 'E'. We use this idea of four distinct angles to set the starting direction:
 
-```cpp
-if(g[i][j]  == 'N') // north
+<details>
+  <summary>Code to set directions</summary>
+    
+ ```cpp 
+if(g[i][j]  == 'N')
 {
     deg = 0;
     kx = i;
     ky = j;
 }
-if(g[i][j]  == 'S') //south
+if(g[i][j]  == 'S')
 {
     deg = 180;
     kx = i;
     ky = j;
 }
-if(g[i][j]  == 'L') //east
+if(g[i][j]  == 'L')
 {
     deg = 90;
     kx = i;
     ky = j;
 }
-if(g[i][j]  == 'O') //west
+if(g[i][j]  == 'O')
 {
     deg = 270;
     kx = i;
     ky = j;
 }
 ```
-
-
-
-
+</details>
+  
+<br>
 Using only four angles to represent the direction simplifies things i.e.less angle ranges to look out for :) . Hence, every time we subtract or add 90 we do the following operation:
 
 ```cpp
 deg %= 360;
 ```
 
+<br>  
 Also note that any time the angle is negative i.e. an 'E' instruction(subtract 90 deg) when the robot is facing North(0 deg), we can add 360 to it get a positive value which would equal the same direction change - we'll end up at the same positon. Look at the graph for further clarification:
 
-![image](https://user-images.githubusercontent.com/52543544/172055833-95c98e5a-af1a-421e-999d-e183a720ddb1.png)
-
+<details>
+  <summary>Graph</summary>
+  
+![image](https://user-images.githubusercontent.com/52543544/172056758-d78c7a84-6552-4411-8b1d-295b06a8abcb.png)
+</details>
    
+<br>   
 Thus, for every 'D' or 'E' instruction we adjust the robot's position using this:
-
+<details>
+  <summary>Code to change directions</summary>
+    
 ```cpp
 void change_dir(char c)
 {
@@ -61,16 +70,18 @@ void change_dir(char c)
     deg %= 360;
 }
 ```
+</details>
 
+<br>
+For every 'F' instruction we move:<br>
+- one row up when the current orientation is 0 deg,  <br>
+- one column right when the orientation is 90 deg,<br>
+- one row down when the current orientation is 180 deg,  <br>
+- one column left when the orientation is is 270 deg.<br>
+<br>
+<br>
 
-For every 'F' instruction we move:
-- one row up when the current orientation is 0 deg,  
-- one column right when the orientation is 90 deg,
-- one row down when the current orientation is 180 deg,  
-- one column left when the orientation is is 270 deg.
-
-
-We should check that the 'F' instructions don't make the robot move out of the grid thus we add conditions that the robot only moves if the positions are limited to (0<= current_row <= r) && (0<= current_column <= c). We should also make sure that the robot doesn't move if the 'F' instruction tells it to move into a cell marked with '#', . If the robot moves into a cell that has a sticker we add it to the number collected and mark the position with a '.' so that if the cell is revisited, it doesn't count the sticker again.
+We should check that the 'F' instructions don't make the robot move out of the grid thus we add conditions that the robot only moves if the positions are limited to (0<= current_row <= r) && (0<= current_column <= c). We should also make sure that the robot doesn't move if the 'F' instruction tells it to move into a cell marked with '#' . If the robot moves into a cell that has a sticker we add it to the number collected and mark the position with a '.' so that if the cell is revisited, it doesn't count the sticker again.
 
 <details>
 <summary>C++ Code</summary>
