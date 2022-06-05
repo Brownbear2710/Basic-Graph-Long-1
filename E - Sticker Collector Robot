@@ -1,0 +1,27 @@
+# [E - Sticker Collector Robot](https://vjudge.net/problem/UVA-11831)
+If you look at how the directions change, the robot ends up facing North(0 deg), South(180 deg), East(90 deg) or West(270 deg) because we add 90 deg to the current direction when the instruction is 'D' and subtract 90 deg when the instruction os 'E'. Using only four angles to represent the direction to move towards, simplifies things i.e.less angle ranges to look out for :) . Hence, every we subtract or add 90 we do the following operation:
+
+
+```cpp
+deg %= 360;
+```
+
+Also note that any time the angle is negative i.e. an 'E' instruction(subtract 90 deg) when the robot is facing North(0 deg), we can add 360 to it get a positive value which would equal the same direction change - we'll end up at the same positon. Look at the graph below for further clarification:
+
+
+Thus, for every 'D' or 'E' instruction we adjust the robot's position using this:
+
+
+
+For every 'F' instruction we move:
+- one row up when the current orientation is 0 deg,  
+- one column right when the orientation is 90 deg,
+- one row down when the current orientation is 180 deg,  
+- one column left when the orientation is is 270 deg.
+
+
+We should check that the 'F' instructions don't make the robot move out of the grid thus we add conditions that the robot only moves if the positions(x,y) are limited to (0<= y < r) && (0<= x < c). We should make sure that the robot doesn't move if the 'F' instruction tells it to move into a cell marked with '#', . If the robot moves into a cell that has a sticker we add it to the number collected and mark the position with a '.' so that if the cell is revisited, it doesn't count the sticker again.
+
+C++ code:
+
+
